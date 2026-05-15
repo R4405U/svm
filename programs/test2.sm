@@ -1,0 +1,15 @@
+PUSH 3          ; Initialize our loop counter
+
+loop_start:
+  DUP           ; Duplicate counter to protect it for the PRINT call
+  PRINT         ; Output current counter value
+
+  PUSH -1       ; Value to decrement by
+  ADD           ; Counter = Counter - 1
+
+  DUP           ; Duplicate the new value to test it
+  IFEQ loop_end ; If counter hit 0, break the loop
+  JMP loop_start
+
+loop_end:
+  POP           ; Clean up the remaining 0 off the stack
