@@ -1,4 +1,4 @@
-# simple machine simulator
+# simple virtual machine
 
 the machine has stack and 7 instructions
 
@@ -16,4 +16,8 @@ the machine has stack and 7 instructions
 
 7. dup # push a copy of what's at the top of the stack back onto the stack.
 
+# Run code
+```bash
+svm [filename]
 
+```
