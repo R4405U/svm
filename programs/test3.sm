@@ -1,4 +1,0 @@
-  PUSH      0      ; Extensive indentation verification
-;;;; Much consecutive comment lines checking pass integrity
-
-PRINT                ; Outputs 0

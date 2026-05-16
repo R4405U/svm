@@ -51,17 +51,25 @@ opcode_t token_to_opcode(token_type_t type) {
     switch (type) {
         case TOKEN_PUSH:  return OP_PUSH;
         case TOKEN_POP:   return OP_POP;
+        case TOKEN_DUP:   return OP_DUP;
+        case TOKEN_SWAP:  return OP_SWAP;
+        case TOKEN_OVER:  return OP_OVER;
+        case TOKEN_NIP:   return  OP_NIP;
+        case TOKEN_TUCK:  return OP_TUCK;
+        case TOKEN_PICK:  return OP_PICK;
         case TOKEN_ADD:   return OP_ADD;
+        case TOKEN_SUB:   return OP_SUB;
+        case TOKEN_MUL:   return OP_MUL;
+        case TOKEN_DIV:   return OP_DIV;
         case TOKEN_IFEQ:  return OP_IFEQ;
         case TOKEN_JMP:   return OP_JMP;
-        case TOKEN_DUP:   return OP_DUP;
+        case TOKEN_HALT:  return OP_HALT;
         case TOKEN_PRINT: return OP_PRINT;
         default:
             fprintf(stderr, "Compiler Error: Token type %d cannot be mapped to an opcode.\n", type);
             exit(EXIT_FAILURE);
     }
 }
-
 
 instruction_t* parse_program(const char* source_code, size_t* out_program_size){
     check_null((void*)source_code, "Compiler Error: Passed NULL source code to parse_program");
@@ -100,7 +108,11 @@ instruction_t* parse_program(const char* source_code, size_t* out_program_size){
             bytecode[pc].arg = NULL;
 
             // Lookahead: Determine if this specific opcode requires an argument
-            if(token.type == TOKEN_PUSH || token.type == TOKEN_JMP || token.type == TOKEN_IFEQ){
+            if(token.type == TOKEN_PUSH || 
+                token.type == TOKEN_PICK || 
+                token.type == TOKEN_JMP || 
+                token.type == TOKEN_IFEQ){
+
                 token_t token_arg = next_token(&state);
                 if(token_arg.type != TOKEN_INTEGER && token_arg.type != TOKEN_IDENTIFIER){
                     fprintf(stderr, "Compilation Error [Line %d]: Expected argument after instruction keyword.\n", token_arg.line);

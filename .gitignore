@@ -1,3 +1,5 @@
 package-lock.json
 .clangd
 src/compile_flags.txt
+programs
+info.txt

@@ -41,10 +41,19 @@ static token_t make_token(token_type_t type, const lexer_state_t* state){
 static token_type_t match_keyword(const char* lexeme){
     if (strcmp(lexeme, "PUSH") == 0)   return TOKEN_PUSH;
     if (strcmp(lexeme, "POP") == 0)    return TOKEN_POP;
+    if (strcmp(lexeme, "DUP") == 0)    return TOKEN_DUP;
+    if (strcmp(lexeme, "SWAP") == 0)   return TOKEN_SWAP;
+    if (strcmp(lexeme, "OVER") == 0)   return TOKEN_OVER;
+    if (strcmp(lexeme, "NIP") == 0)    return TOKEN_NIP;
+    if (strcmp(lexeme, "TUCK") == 0)   return TOKEN_TUCK;
+    if (strcmp(lexeme, "PICK") == 0)   return TOKEN_PICK;
     if (strcmp(lexeme, "ADD") == 0)    return TOKEN_ADD;
+    if (strcmp(lexeme, "SUB") == 0)    return TOKEN_SUB;
+    if (strcmp(lexeme, "MUL") == 0)    return TOKEN_MUL;
+    if (strcmp(lexeme, "DIV") == 0)    return TOKEN_DIV;
     if (strcmp(lexeme, "IFEQ") == 0)   return TOKEN_IFEQ;
     if (strcmp(lexeme, "JMP") == 0)    return TOKEN_JMP;
-    if (strcmp(lexeme, "DUP") == 0)    return TOKEN_DUP;
+    if (strcmp(lexeme, "HALT") == 0)   return TOKEN_HALT;
     if (strcmp(lexeme, "PRINT") == 0)  return TOKEN_PRINT;
 
     return TOKEN_IDENTIFIER; // Fallback: Must be a jump target reference label name
